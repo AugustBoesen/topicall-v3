@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { fetchedQuestions } from './interface/fetchQuestions';
 import { motion, useMotionValue, useMotionValueEvent } from 'framer-motion';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
-import { Audio, RotatingLines } from 'react-loader-spinner';
+import { RotatingLines } from 'react-loader-spinner';
 import { CiSettings } from 'react-icons/ci';
 import Link from 'next/link';
 
