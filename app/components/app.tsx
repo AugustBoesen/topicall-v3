@@ -13,12 +13,15 @@ export default function App() {
   const [history, setHistory] = useState<{ id: number; text: string }[]>([]);
   const [color, setColor] = useState('');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [randomOrder, toggleRandomOrder] = useState(false);
+  const [randomOrder, toggleRandomOrder] = useState(true);
 
   const [questionsData, setQuestionsData] = useState<
     { id: number; text: string }[]
   >([]);
 
+  //______________________________________
+  // INITIALIZE QUESTION DATA FROM DATABASE
+  //______________________________________
   useEffect(() => {
     const fetchQuestions = async () => {
       setQuestionsData([{ id: -1, text: '' }]);
@@ -115,7 +118,7 @@ export default function App() {
   });
 
   useMotionValueEvent(x, 'change', (latest) => {
-    rotation.set(latest * 0.05);
+    rotation.set(latest * 0.1);
   });
 
   return (
@@ -132,7 +135,16 @@ export default function App() {
         <div className='card bg-black bg-opacity-30'>
           <h1>Question #{current.id}</h1>
           <h2>{current.text}</h2>
-          {current.text === '' && <RotatingLines strokeColor='white' />}
+          {current.text === '' && (
+            <>
+              <RotatingLines
+                width='50'
+                strokeColor='white'
+                ariaLabel='loading'
+              />
+              <p>Loading questions...</p>
+            </>
+          )}
         </div>
       </motion.div>
       {isSettingsOpen && (
@@ -144,6 +156,9 @@ export default function App() {
           <div className='w-full flex justify-around mb-6'>
             <Link className='linkbtn' href='/submit'>
               Suggest
+            </Link>
+            <Link className='linkbtn' href='/'>
+              Modes
             </Link>
             <Link className='linkbtn' href='/about'>
               About
