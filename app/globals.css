@@ -3,31 +3,61 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  @apply bg-white text-white overflow-x-hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+main {
+  @apply flex justify-center items-center h-screen select-none;
+  background: rgb(147, 147, 147);
+  background: radial-gradient(
+    circle,
+    rgba(147, 147, 147, 1) 0%,
+    rgba(228, 254, 248, 1) 49%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.app-container {
+  @apply max-h-[760px] max-w-[360px] w-full h-full border-4 rounded-xl relative border-white border-opacity-10;
+  box-shadow: rgba(235, 235, 235, 0.4) -5px 5px,
+    rgba(224, 224, 224, 0.3) -10px 10px, rgba(236, 236, 236, 0.2) -15px 15px,
+    rgba(227, 227, 227, 0.1) -20px 20px, rgba(241, 241, 241, 0.05) -25px 25px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.card-border {
+  @apply border-4 border-white border-opacity-50 absolute w-full h-full z-40 pointer-events-none rounded-xl;
+}
+
+.card {
+  @apply h-full w-full flex flex-col justify-center items-center rounded-xl z-30;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 4px inset;
+}
+
+.card h1 {
+  @apply absolute top-4 right-4 opacity-50;
+}
+
+.card h2 {
+  @apply text-2xl mx-4 text-center;
+}
+
+.menu {
+  @apply absolute bottom-32 border-t-2 pt-4 w-full flex flex-col justify-center z-50 pointer-events-auto;
+}
+
+.buttondiv {
+  @apply flex justify-around absolute bottom-0 pb-8 w-full bg-slate-800 border-t-2 rounded-b-xl bg-opacity-20 z-40;
+}
+
+button {
+  @apply bg-slate-800 border-t-2 text-white h-16 w-16 m-2 rounded-full -mt-8 text-5xl flex justify-center items-center;
+}
+
+.linkbtn {
+  @apply bg-black bg-opacity-40 text-xl text-white h-8 w-24 content-center text-center rounded-xl;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
